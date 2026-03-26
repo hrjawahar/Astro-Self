@@ -75,8 +75,6 @@ const summaryBox = document.getElementById('summaryBox');
 const whyBox = document.getElementById('whyBox');
 const domainCards = document.getElementById('domainCards');
 const analyzeBtn = document.getElementById('analyzeBtn');
-const nativeName = document.getElementById("nativeName")?.value || "Unnamed Native";
-reportText = `Native: ${nativeName}\n\n` + reportText;
 const downloadBtn = document.getElementById('downloadReportBtn');
 const resetBtn = document.getElementById('resetBtn');
 
@@ -269,7 +267,6 @@ function buildDownloadText(data) {
   data.triggeredRules.forEach((rule, idx) => lines.push(`${idx + 1}. ${rule}`));
   lines.push('');
   lines.push('DOMAIN INSIGHTS');
-  const showEMA = document.getElementById("showEmaToggle")?.checked;
   data.domains.forEach(domain => {
     lines.push('');
     lines.push(domain.title.toUpperCase());
@@ -280,7 +277,6 @@ function buildDownloadText(data) {
     domain.reasons.forEach(reason => lines.push(`- ${reason}`));
   });
   return lines.join('\n');
-  if (!showEMA && domain.title === "EMA Risk") return;
 }
 
 initSelect('d1Lagna');
