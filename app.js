@@ -202,26 +202,38 @@ async function analyze() {
 
 function renderResult(data) {
   const { summary, domains, triggeredRules, generatedAt } = data;
+  const showEMA = document.getElementById("showEmaToggle")?.checked;
+
   summaryBox.innerHTML = `
     <p><strong>Overall pattern:</strong> ${summary.overallPattern}</p>
     <p><strong>Early-life leaning:</strong> ${summary.earlyLife}</p>
     <p><strong>Later-life leaning:</strong> ${summary.laterLife}</p>
     <p><strong>Generated:</strong> ${new Date(generatedAt).toLocaleString()}</p>
   `;
-  whyBox.innerHTML = `<ul class="bullet-list">${triggeredRules.map(rule => `<li>${rule}</li>`).join('')}</ul>`;
-  domainCards.innerHTML = domains.map(domain => `
-    <article class="domain-card">
-      <div class="section-head compact">
-        <h3>${domain.title}</h3>
-        <span class="status-badge ${statusClass(domain.verdict)}">${domain.verdict}</span>
-      </div>
-      <div class="score-row"><strong>D1:</strong> ${domain.d1Strength}</div>
-      <div class="score-row"><strong>D9:</strong> ${domain.d9Strength}</div>
-      <div class="score-row"><strong>Flags:</strong> ${domain.flags.length ? domain.flags.join(', ') : 'None'}</div>
-      <div class="score-row"><strong>Why:</strong></div>
-      <ul class="status-list">${domain.reasons.map(r => `<li>${r}</li>`).join('')}</ul>
-    </article>
-  `).join('');
+
+  whyBox.innerHTML = `<ul class="bullet-list">${
+    triggeredRules
+      .filter(rule => showEMA || !rule.includes('EMA'))
+      .map(rule => `<li>${rule}</li>`)
+      .join('')
+  }</ul>`;
+
+  domainCards.innerHTML = domains
+    .filter(domain => showEMA || domain.title !== "EMA Risk")
+    .map(domain => `
+      <article class="domain-card">
+        <div class="section-head compact">
+          <h3>${domain.title}</h3>
+          <span class="status-badge ${statusClass(domain.verdict)}">${domain.verdict}</span>
+        </div>
+        <div class="score-row"><strong>D1:</strong> ${domain.d1Strength}</div>
+        <div class="score-row"><strong>D9:</strong> ${domain.d9Strength}</div>
+        <div class="score-row"><strong>Flags:</strong> ${domain.flags.length ? domain.flags.join(', ') : 'None'}</div>
+        <div class="score-row"><strong>Why:</strong></div>
+        <ul class="status-list">${domain.reasons.map(r => `<li>${r}</li>`).join('')}</ul>
+      </article>
+    `).join('');
+
   window.__lastReport = data;
   downloadBtn.disabled = false;
 }
@@ -255,7 +267,12 @@ downloadBtn.addEventListener('click', () => {
 });
 
 function buildDownloadText(data) {
+
+  const nativeName = document.getElementById("nativeName")?.value || "Unnamed Native";
+  const showEMA = document.getElementById("showEmaToggle")?.checked;
+
   const lines = [];
+  lines.push(`Native: ${nativeName}`);
   lines.push('D1-D9 LIFE PATTERN ANALYZER REPORT');
   lines.push('');
   lines.push(`Generated At: ${new Date(data.generatedAt).toLocaleString()}`);
@@ -267,7 +284,10 @@ function buildDownloadText(data) {
   data.triggeredRules.forEach((rule, idx) => lines.push(`${idx + 1}. ${rule}`));
   lines.push('');
   lines.push('DOMAIN INSIGHTS');
+
   data.domains.forEach(domain => {
+    if (!showEMA && domain.title === "EMA Risk") return;
+
     lines.push('');
     lines.push(domain.title.toUpperCase());
     lines.push(`Verdict: ${domain.verdict}`);
@@ -276,9 +296,9 @@ function buildDownloadText(data) {
     lines.push(`Flags: ${domain.flags.join(', ') || 'None'}`);
     domain.reasons.forEach(reason => lines.push(`- ${reason}`));
   });
+
   return lines.join('\n');
 }
-
 initSelect('d1Lagna');
 initSelect('d9Lagna');
 createGrid('d1Grid', 'd1');
