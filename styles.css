@@ -13,13 +13,12 @@
 }
 * { box-sizing: border-box; }
 body {
-  body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(180deg, #0b1021, #111827);
-  color: var(--text);
+  color: #e5e7eb;
 }
-.app-shell { max-width: 1320px; margin: 0 auto; padding: 24px; }
+  .app-shell { max-width: 1320px; margin: 0 auto; padding: 24px; }
 .topbar, .section-head {
   display: flex;
   gap: 16px;
@@ -172,4 +171,17 @@ pre {
   align-items: center;
   gap: 8px;
   margin-top: 22px;
+}
+.card {
+  color: #e5e7eb;
+}
+
+textarea,
+select,
+input {
+  color: #e5e7eb;
+}
+
+h1, h2, h3, h4 {
+  color: #f1f5f9;
 }
