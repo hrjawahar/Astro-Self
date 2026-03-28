@@ -67,7 +67,58 @@ const signLord = {
   Leo: "Sun", Virgo: "Mercury", Libra: "Venus", Scorpio: "Mars",
   Sagittarius: "Jupiter", Capricorn: "Saturn", Aquarius: "Saturn", Pisces: "Jupiter"
 };
-
+const I18N = {
+  en: {
+    eyebrow: "Rule-based browser app for manual D1/D9 interpretation",
+    appTitle: "D1–D9 Life Pattern Analyzer",
+    languageLabel: "Language",
+    downloadReportBtn: "Download Report",
+    resetBtn: "Reset",
+    tabInput: "Input",
+    tabInsights: "Insights",
+    tabReference: "Reference Guide",
+    howItWorks: "How this version works",
+    d1ManualEntry: "D1 Manual Entry",
+    d9ManualEntry: "D9 Manual Entry",
+    lagnaSign: "Lagna Sign",
+    validation: "Validation",
+    generateInsights: "Generate Insights",
+    nativeName: "Native Name",
+    emaSensitive: "EMA (Sensitive)",
+    quickVerdict: "Quick Verdict",
+    summary: "Summary",
+    confidenceScore: "Confidence Score",
+    comparisonTitle: "D1–D9 Comparison",
+    domainInsights: "Domain Insights",
+    whyThisConclusion: "Why this conclusion",
+    referenceGuide: "Reference Guide"
+  },
+  ta: {
+    eyebrow: "கையேடு அடிப்படையிலான D1/D9 கைமுறை விளக்க பயன்பாடு",
+    appTitle: "D1–D9 வாழ்க்கை வடிவியல் பகுப்பாய்வி",
+    languageLabel: "மொழி",
+    downloadReportBtn: "அறிக்கையை பதிவிறக்கு",
+    resetBtn: "மீட்டமை",
+    tabInput: "உள்ளீடு",
+    tabInsights: "பார்வைகள்",
+    tabReference: "குறிப்புக் கையேடு",
+    howItWorks: "இந்த பதிப்பு எப்படி செயல்படுகிறது",
+    d1ManualEntry: "D1 கைமுறை பதிவு",
+    d9ManualEntry: "D9 கைமுறை பதிவு",
+    lagnaSign: "லக்ன ராசி",
+    validation: "சரிபார்ப்பு",
+    generateInsights: "பார்வைகளை உருவாக்கு",
+    nativeName: "பெயர்",
+    emaSensitive: "EMA (உணர்வுசார்)",
+    quickVerdict: "விரைவு முடிவு",
+    summary: "சுருக்கம்",
+    confidenceScore: "நம்பகத்தன்மை மதிப்பெண்",
+    comparisonTitle: "D1–D9 ஒப்பீடு",
+    domainInsights: "வாழ்க்கை துறை பார்வைகள்",
+    whyThisConclusion: "இந்த முடிவிற்கான காரணம்",
+    referenceGuide: "குறிப்புக் கையேடு"
+  }
+};
 const tabs = document.querySelectorAll('.tab');
 const panels = document.querySelectorAll('.tab-panel');
 const validationBox = document.getElementById('validationBox');
