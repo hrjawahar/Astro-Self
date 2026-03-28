@@ -186,13 +186,22 @@ async function analyze() {
   analyzeBtn.disabled = true;
   analyzeBtn.textContent = 'Analyzing...';
   try {
-    const res = await fetch('/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Analysis failed');
+   const res = await fetch('/api/analyze', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
+
+const text = await res.text();
+let data;
+
+try {
+  data = JSON.parse(text);
+} catch {
+  throw new Error('Backend is not returning JSON. Check /api/analyze deployment.');
+}
+
+if (!res.ok) throw new Error(data.error || 'Analysis failed');   
     renderResult(data);
     switchTab('insightsTab');
   } catch (error) {
@@ -207,12 +216,18 @@ function renderResult(data) {
   const { summary, domains, triggeredRules, generatedAt } = data;
   const showEMA = document.getElementById("showEmaToggle")?.checked;
 
+  const visibleDomains = domains.filter(domain => showEMA || domain.title !== "EMA Risk");
+
   summaryBox.innerHTML = `
     <p><strong>Overall pattern:</strong> ${summary.overallPattern}</p>
     <p><strong>Early-life leaning:</strong> ${summary.earlyLife}</p>
     <p><strong>Later-life leaning:</strong> ${summary.laterLife}</p>
     <p><strong>Generated:</strong> ${new Date(generatedAt).toLocaleString()}</p>
   `;
+
+  renderQuickVerdict(visibleDomains);
+  renderConfidence(visibleDomains, triggeredRules);
+  renderComparisonTable(visibleDomains);
 
   whyBox.innerHTML = `<ul class="bullet-list">${
     triggeredRules
@@ -221,10 +236,10 @@ function renderResult(data) {
       .join('')
   }</ul>`;
 
-  domainCards.innerHTML = domains
-    .filter(domain => showEMA || domain.title !== "EMA Risk")
+  domainCards.innerHTML = visibleDomains
     .map(domain => `
       <article class="domain-card">
+        <div class="domain-group-tag">${deriveTrend(domain)}</div>
         <div class="section-head compact">
           <h3>${domain.title}</h3>
           <span class="status-badge ${statusClass(domain.verdict)}">${domain.verdict}</span>
@@ -240,7 +255,72 @@ function renderResult(data) {
   window.__lastReport = data;
   downloadBtn.disabled = false;
 }
+function renderQuickVerdict(domains) {
+  quickVerdictGrid.innerHTML = domains.map(domain => `
+    <div class="verdict-card">
+      <h3>${domain.title}</h3>
+      <div class="verdict-value">${domain.verdict}</div>
+    </div>
+  `).join('');
+}
 
+function renderConfidence(domains, triggeredRules) {
+  const strongCount = domains.filter(d => d.d1Strength === 'Strong' || d.d9Strength === 'Strong').length;
+  const weakCount = domains.filter(d => d.d1Strength === 'Weak' || d.d9Strength === 'Weak').length;
+  const mixedCount = domains.filter(d => d.verdict === 'Mixed').length;
+  const modifierPenalty = triggeredRules.filter(rule => rule.includes('Global')).length * 4;
+
+  let score = 72 + (strongCount * 4) - (weakCount * 5) - (mixedCount * 2) - modifierPenalty;
+  if (score > 95) score = 95;
+  if (score < 40) score = 40;
+
+  let label = 'Moderate confidence';
+  if (score >= 85) label = 'High confidence';
+  else if (score <= 55) label = 'Guarded confidence';
+
+  confidenceBox.innerHTML = `
+    <div class="confidence-box">
+      <div class="confidence-score">${score}%</div>
+      <div class="confidence-label">${label}</div>
+      <div class="score-row">Based on domain alignment, conflicting signals, and global modifiers.</div>
+    </div>
+  `;
+}
+
+function renderComparisonTable(domains) {
+  comparisonTableWrap.className = 'comparison-table-wrap';
+  comparisonTableWrap.innerHTML = `
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>D1</th>
+          <th>D9</th>
+          <th>Trend</th>
+          <th>Final Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${domains.map(domain => `
+          <tr>
+            <td>${domain.title}</td>
+            <td>${domain.d1Strength}</td>
+            <td>${domain.d9Strength}</td>
+            <td>${deriveTrend(domain)}</td>
+            <td>${domain.verdict}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+function deriveTrend(domain) {
+  if (domain.d1Strength === 'Strong' && domain.d9Strength === 'Strong') return 'Stable';
+  if (domain.d1Strength === 'Strong' && (domain.d9Strength === 'Mixed' || domain.d9Strength === 'Weak')) return 'Early strength, later fluctuation';
+  if ((domain.d1Strength === 'Mixed' || domain.d1Strength === 'Weak') && domain.d9Strength === 'Strong') return 'Improves later';
+  if (domain.d1Strength === 'Weak' && domain.d9Strength === 'Weak') return 'Persistent challenge';
+  return 'Mixed progression';
+}
 function statusClass(verdict) {
   const key = verdict.toLowerCase();
   if (key.includes('stable') || key.includes('strong')) return 'status-stable';
