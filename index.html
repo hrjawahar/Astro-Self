@@ -8,27 +8,35 @@
 </head>
 <body>
   <div class="app-shell">
-    <header class="topbar">
-      <div>
-        <div class="eyebrow">Rule-based browser app for manual D1/D9 interpretation</div>
-        <h1>D1–D9 Life Pattern Analyzer</h1>
-      </div>
-      <div class="top-actions">
-        <button id="downloadReportBtn" class="secondary" disabled>Download Report</button>
-        <button id="resetBtn" class="danger">Reset</button>
-      </div>
-    </header>
+   <header class="topbar">
+  <div>
+    <div class="eyebrow" data-i18n="eyebrow">Rule-based browser app for manual D1/D9 interpretation</div>
+    <h1 data-i18n="appTitle">D1–D9 Life Pattern Analyzer</h1>
+  </div>
 
+  <div class="top-actions">
+    <label class="lang-toggle-label">
+      <span data-i18n="languageLabel">Language</span>
+      <select id="languageToggle" class="lang-toggle">
+        <option value="en">English</option>
+        <option value="ta">தமிழ்</option>
+      </select>
+    </label>
+
+    <button id="downloadReportBtn" class="secondary" disabled data-i18n="downloadReportBtn">Download Report</button>
+    <button id="resetBtn" class="danger" data-i18n="resetBtn">Reset</button>
+  </div>
+</header>
     <nav class="tabs">
-      <button class="tab active" data-tab="inputTab">Input</button>
-      <button class="tab" data-tab="insightsTab">Insights</button>
-      <button class="tab" data-tab="referenceTab">Reference Guide</button>
+      <button class="tab active" data-tab="inputTab" data-i18n="tabInput">Input</button>
+<button class="tab" data-tab="insightsTab" data-i18n="tabInsights">Insights</button>
+<button class="tab" data-tab="referenceTab" data-i18n="tabReference">Reference Guide</button>
     </nav>
 
     <main>
       <section id="inputTab" class="tab-panel active">
         <div class="card intro-card">
-          <h2>How this version works</h2>
+        <h2 data-i18n="howItWorks">How this version works</h2> 
           <p>Enter D1 and D9 manually. The app validates the charts, sends them to the Cloudflare function, then returns rule-based domain insights for identity, wealth, marriage, career, EMA risk, and health.</p>
           <ul>
             <li>Lagna sign is mandatory for both charts.</li>
@@ -37,45 +45,50 @@
           </ul>
         </div>
 
-        <div class="grid two-col">
-          <section class="card chart-card">
-            <div class="section-head">
-              <h2>D1 Manual Entry</h2>
-              <label>
-                Lagna Sign
-                <select id="d1Lagna"></select>
-              </label>
-            </div>
-            <div id="d1Grid" class="house-grid"></div>
-          </section>
+       <div class="grid two-col">
 
-          <section class="card chart-card">
-            <div class="section-head">
-              <h2>D9 Manual Entry</h2>
-              <label>
-                Lagna Sign
-                <select id="d9Lagna"></select>
-              </label>
-            </div>
-            <div id="d9Grid" class="house-grid"></div>
-          </section>
-        </div>
+  <!-- D1 -->
+  <section class="card chart-card">
+    <div class="section-head">
+      <h2 data-i18n="d1ManualEntry">D1 Manual Entry</h2>
+      <label>
+        <span data-i18n="lagnaSign">Lagna Sign</span>
+        <select id="d1Lagna"></select>
+      </label>
+    </div>
+    <div id="d1Grid" class="house-grid"></div>
+  </section>
 
+  <!-- D9 -->
+  <section class="card chart-card">
+    <div class="section-head">
+      <h2 data-i18n="d9ManualEntry">D9 Manual Entry</h2>
+      <label>
+        <span data-i18n="lagnaSign">Lagna Sign</span>
+        <select id="d9Lagna"></select>
+      </label>
+    </div>
+    <div id="d9Grid" class="house-grid"></div>
+  </section>
+
+</div>
        <div class="card">
   <div class="section-head compact">
     <h2>Validation</h2>
-    <button id="analyzeBtn">Generate Insights</button>
+    <button id="analyzeBtn" data-i18n="generateInsights">Generate Insights</button>
   </div>
 
   <div class="form-row">
     <label>
       Native Name
+      <span data-i18n="nativeName">Native Name</span>
       <input id="nativeName" type="text" placeholder="Optional — appears in report" />
     </label>
 
     <label class="checkbox">
       <input type="checkbox" id="showEmaToggle" />
-      EMA (Sensitive)  
+      EMA (Sensitive) 
+      <span data-i18n="emaSensitive">EMA (Sensitive)</span>
     </label>
   </div>
 
@@ -86,7 +99,7 @@
       <section id="insightsTab" class="tab-panel">
   <section class="card">
     <div class="section-head compact">
-      <h2>Quick Verdict</h2>
+     <h2 data-i18n="quickVerdict">Quick Verdict</h2>
       <span class="pill">Current session only</span>
     </div>
     <div id="quickVerdictGrid" class="verdict-grid">
@@ -96,34 +109,34 @@
 
   <div class="grid two-col insights-layout">
     <section class="card">
-      <h2>Summary</h2>
+      <h2 data-i18n="summary">Summary</h2>
       <div id="summaryBox" class="empty-state">Run analysis to view summary.</div>
     </section>
 
     <section class="card">
-      <h2>Confidence Score</h2>
+      <h2 data-i18n="confidenceScore">Confidence Score</h2>
       <div id="confidenceBox" class="empty-state">Confidence score will appear here.</div>
     </section>
   </div>
 
   <section class="card">
-    <h2>D1–D9 Comparison</h2>
+   <h2 data-i18n="comparisonTitle">D1–D9 Comparison</h2>
     <div id="comparisonTableWrap" class="empty-state">Comparison table will appear here.</div>
   </section>
 
   <section class="card">
-    <h2>Domain Insights</h2>
+ <h2 data-i18n="domainInsights">Domain Insights</h2>
     <div id="domainCards" class="domain-cards"></div>
   </section>
 
   <section class="card">
-    <h2>Why this conclusion</h2>
+    <h2 data-i18n="whyThisConclusion">Why this conclusion</h2>
     <div id="whyBox" class="empty-state">Triggered rules will appear here.</div>
   </section>
 </section>
       <section id="referenceTab" class="tab-panel">
         <div class="card">
-          <h2>Reference Guide</h2>
+         <h2 data-i18n="referenceGuide">Reference Guide</h2>
           <div class="accordion-wrap" id="referenceGuide"></div>
         </div>
       </section>
