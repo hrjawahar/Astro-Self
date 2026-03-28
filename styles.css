@@ -280,3 +280,86 @@ pre {
   .app-shell { padding: 14px; }
   .house-grid { grid-template-columns: 1fr; }
 }
+.verdict-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.verdict-card {
+  background: #182234;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.verdict-card h3 {
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.verdict-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.confidence-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confidence-score {
+  font-size: 32px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.confidence-label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.comparison-table-wrap {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.comparison-table th,
+.comparison-table td {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.comparison-table th {
+  background: #182234;
+  color: #f8fafc;
+}
+
+.comparison-table td {
+  background: rgba(255,255,255,.02);
+}
+
+.domain-group-tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: rgba(139,92,246,.15);
+  color: #c4b5fd;
+}
