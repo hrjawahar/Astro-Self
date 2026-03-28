@@ -363,3 +363,14 @@ pre {
   background: rgba(139,92,246,.15);
   color: #c4b5fd;
 }
+.lang-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.lang-toggle {
+  min-width: 120px;
+}
