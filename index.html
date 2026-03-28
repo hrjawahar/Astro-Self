@@ -84,27 +84,43 @@
       </section>
 
       <section id="insightsTab" class="tab-panel">
-        <div class="grid two-col insights-layout">
-          <section class="card">
-            <div class="section-head compact">
-              <h2>Quick Verdict</h2>
-              <span class="pill">Current session only</span>
-            </div>
-            <div id="summaryBox" class="empty-state">Run analysis to view summary.</div>
-          </section>
+  <section class="card">
+    <div class="section-head compact">
+      <h2>Quick Verdict</h2>
+      <span class="pill">Current session only</span>
+    </div>
+    <div id="quickVerdictGrid" class="verdict-grid">
+      <div class="empty-state">Run analysis to view quick verdict.</div>
+    </div>
+  </section>
 
-          <section class="card">
-            <h2>Why this conclusion</h2>
-            <div id="whyBox" class="empty-state">Triggered rules will appear here.</div>
-          </section>
-        </div>
+  <div class="grid two-col insights-layout">
+    <section class="card">
+      <h2>Summary</h2>
+      <div id="summaryBox" class="empty-state">Run analysis to view summary.</div>
+    </section>
 
-        <section class="card">
-          <h2>Domain Insights</h2>
-          <div id="domainCards" class="domain-cards"></div>
-        </section>
-      </section>
+    <section class="card">
+      <h2>Confidence Score</h2>
+      <div id="confidenceBox" class="empty-state">Confidence score will appear here.</div>
+    </section>
+  </div>
 
+  <section class="card">
+    <h2>D1–D9 Comparison</h2>
+    <div id="comparisonTableWrap" class="empty-state">Comparison table will appear here.</div>
+  </section>
+
+  <section class="card">
+    <h2>Domain Insights</h2>
+    <div id="domainCards" class="domain-cards"></div>
+  </section>
+
+  <section class="card">
+    <h2>Why this conclusion</h2>
+    <div id="whyBox" class="empty-state">Triggered rules will appear here.</div>
+  </section>
+</section>
       <section id="referenceTab" class="tab-panel">
         <div class="card">
           <h2>Reference Guide</h2>
