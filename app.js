@@ -131,7 +131,7 @@ const comparisonTableWrap = document.getElementById('comparisonTableWrap');
 const analyzeBtn = document.getElementById('analyzeBtn');
 const downloadBtn = document.getElementById('downloadReportBtn');
 const resetBtn = document.getElementById('resetBtn');
-
+const languageToggle = document.getElementById('languageToggle');
 function initSelect(id) {
   const select = document.getElementById(id);
   SIGNS.forEach(sign => {
@@ -213,7 +213,26 @@ function renderValidation(errors) {
   }
   validationBox.innerHTML = `<div class="bad"><strong>Validation failed:</strong></div><ul>${errors.map(err => `<li>${err}</li>`).join('')}</ul>`;
 }
+function applyLanguage(lang = 'en') {
+  const dict = I18N[lang] || I18N.en;
 
+  document.querySelectorAll('[data-i18n]').forEach(node => {
+    const key = node.dataset.i18n;
+    if (dict[key]) node.textContent = dict[key];
+  });
+
+  localStorage.setItem('astroAppLang', lang);
+}
+
+function initLanguage() {
+  const savedLang = localStorage.getItem('astroAppLang') || 'en';
+  if (languageToggle) languageToggle.value = savedLang;
+  applyLanguage(savedLang);
+
+  languageToggle?.addEventListener('change', (e) => {
+    applyLanguage(e.target.value);
+  });
+}
 function buildPayload() {
   const d1Lagna = document.getElementById('d1Lagna').value;
   const d9Lagna = document.getElementById('d9Lagna').value;
@@ -434,7 +453,13 @@ function buildDownloadText(data) {
   return lines.join('\n');
 }
 initSelect('d1Lagna');
+
 initSelect('d9Lagna');
+
 createGrid('d1Grid', 'd1');
+
 createGrid('d9Grid', 'd9');
+
 initReferenceGuide();
+
+initLanguage();
