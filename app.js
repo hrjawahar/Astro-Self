@@ -122,7 +122,7 @@ const signLord = {
   Sagittarius: "Jupiter", Capricorn: "Saturn", Aquarius: "Saturn", Pisces: "Jupiter"
 };
 const I18N = {
-  en: {
+ en: { ... },
     eyebrow: "Rule-based browser app for manual D1/D9 interpretation",
     appTitle: "D1–D9 Life Pattern Analyzer",
     languageLabel: "Language",
@@ -190,7 +190,9 @@ const I18N = {
  }
 };
 
-  ta: {
+ ta: { ... }
+
+};
     eyebrow: "கையேடு அடிப்படையிலான D1/D9 கைமுறை விளக்க பயன்பாடு",
     appTitle: "D1–D9 வாழ்க்கை வடிவியல் பகுப்பாய்வி",
     languageLabel: "மொழி",
