@@ -187,8 +187,7 @@ const I18N = {
     verdictCareer: "Career & Earning",
     verdictEMA: "EMA Risk",
     verdictHealth: "Health"
- }
-};
+ },
 
  ta: { ... }
 
