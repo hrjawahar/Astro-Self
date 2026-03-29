@@ -620,13 +620,10 @@ function buildDownloadText(data) {
   return lines.join('\n');
 }
 initSelect('d1Lagna');
-
 initSelect('d9Lagna');
 
 createGrid('d1Grid', 'd1');
-
 createGrid('d9Grid', 'd9');
 
 initReferenceGuide();
-
 initLanguage();
