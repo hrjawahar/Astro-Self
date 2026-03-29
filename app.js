@@ -180,6 +180,21 @@ const I18N = {
     verdictCareer: "Career & Earning",
     verdictEMA: "EMA Risk",
     verdictHealth: "Health"
+    strengthStrong: "Strong",
+  strengthMixed: "Mixed",
+  strengthWeak: "Weak",
+
+verdictStable: "Strong & Stable",
+verdictMixed: "Mixed",
+verdictDelayed: "Delayed / Improves later",
+verdictTemporary: "Temporary / Unstable",
+verdictChallenging: "Challenging",
+
+reportTitle: "D1-D9 LIFE PATTERN ANALYZER REPORT",
+reportNative: "Native",
+reportGenerated: "Generated At",
+reportRules: "TRIGGERED RULES",
+reportDomains: "DOMAIN INSIGHTS"
   },
 
   ta: {
@@ -240,6 +255,21 @@ const I18N = {
     verdictCareer: "தொழில் & வருமானம்",
     verdictEMA: "EMA அபாயம்",
     verdictHealth: "ஆரோக்கியம்"
+    strengthStrong: "வலுவான",
+strengthMixed: "கலப்பு",
+strengthWeak: "பலவீனமான",
+
+verdictStable: "வலுவான மற்றும் நிலையான",
+verdictMixed: "கலப்பு",
+verdictDelayed: "தாமதமாக மேம்படும்",
+verdictTemporary: "தற்காலிக / நிலைகுலையும்",
+verdictChallenging: "சவாலான",
+
+reportTitle: "D1-D9 வாழ்க்கை வடிவியல் பகுப்பாய்வு அறிக்கை",
+reportNative: "ஜாதகர்",
+reportGenerated: "உருவாக்கப்பட்ட நேரம்",
+reportRules: "தூண்டப்பட்ட விதிகள்",
+reportDomains: "வாழ்க்கை துறை பார்வைகள்"
   }
 };
 const tabs = document.querySelectorAll('.tab');
@@ -466,10 +496,10 @@ function renderResult(data) {
         <div class="domain-group-tag">${deriveTrend(domain)}</div>
         <div class="section-head compact">
           <h3>${domain.title}</h3>
-          <span class="status-badge ${statusClass(domain.verdict)}">${domain.verdict}</span>
+         <span class="status-badge ${statusClass(domain.verdict)}">${translateVerdict(domain.verdict)}</span>
         </div>
-        <div class="score-row"><strong>D1:</strong> ${domain.d1Strength}</div>
-        <div class="score-row"><strong>D9:</strong> ${domain.d9Strength}</div>
+        <div class="score-row"><strong>D1:</strong> ${translateStrength(domain.d1Strength)}</div>
+<div class="score-row"><strong>D9:</strong> ${translateStrength(domain.d9Strength)}</div>
         <div class="score-row"><strong>Flags:</strong> ${domain.flags.length ? domain.flags.join(', ') : 'None'}</div>
         <div class="score-row"><strong>Why:</strong></div>
         <ul class="status-list">${domain.reasons.map(r => `<li>${r}</li>`).join('')}</ul>
@@ -478,6 +508,20 @@ function renderResult(data) {
 
   window.__lastReport = data;
   downloadBtn.disabled = false;
+}
+function translateVerdict(val){
+  if(val.includes("Stable")) return t('verdictStable');
+  if(val.includes("Mixed")) return t('verdictMixed');
+  if(val.includes("Delayed")) return t('verdictDelayed');
+  if(val.includes("Temporary")) return t('verdictTemporary');
+  if(val.includes("Challenge")) return t('verdictChallenging');
+  return val;
+}
+function translateStrength(val){
+  if(val === "Strong") return t('strengthStrong');
+  if(val === "Mixed") return t('strengthMixed');
+  if(val === "Weak") return t('strengthWeak');
+  return val;
 }
 function renderQuickVerdict(domains) {
   quickVerdictGrid.innerHTML = domains.map(domain => `
@@ -578,18 +622,18 @@ function buildDownloadText(data) {
   const showEMA = document.getElementById("showEmaToggle")?.checked;
 
   const lines = [];
-  lines.push(`Native: ${nativeName}`);
-  lines.push('D1-D9 LIFE PATTERN ANALYZER REPORT');
+lines.push(`${t('reportNative')}: ${nativeName}`);
+ lines.push(t('reportTitle'));
   lines.push('');
-  lines.push(`Generated At: ${new Date(data.generatedAt).toLocaleString()}`);
+  lines.push(`${t('reportGenerated')}: ${new Date(data.generatedAt).toLocaleString()}`);
   lines.push(`Overall Pattern: ${data.summary.overallPattern}`);
   lines.push(`Early-Life Leaning: ${data.summary.earlyLife}`);
   lines.push(`Later-Life Leaning: ${data.summary.laterLife}`);
   lines.push('');
-  lines.push('TRIGGERED RULES');
+  lines.push(t('reportRules'));
   data.triggeredRules.forEach((rule, idx) => lines.push(`${idx + 1}. ${rule}`));
   lines.push('');
-  lines.push('DOMAIN INSIGHTS');
+  lines.push(t('reportDomains'));
 
   data.domains.forEach(domain => {
     if (!showEMA && domain.title === "EMA Risk") return;
