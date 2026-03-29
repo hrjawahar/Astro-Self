@@ -417,17 +417,12 @@ function translateDomainTitle(title) {
     "EMA Risk": t('verdictEMA'),
     "Health": t('verdictHealth')
   };
-  function saveCurrentSession() {
-  const entry = collectCurrentEntry();
-  const existing = getSavedSessions();
-
-  existing.unshift(entry);
-
-  const trimmed = existing.slice(0, 20);
-  setSavedSessions(trimmed);
-  renderHistory();
+  return map[title] || title;
 }
-  const STORAGE_KEY = 'astroAppSavedSessions';
+
+/* ---------- SAVE SESSION BLOCK (GLOBAL) ---------- */
+
+const STORAGE_KEY = 'astroAppSavedSessions';
 
 function getSavedSessions() {
   try {
@@ -454,6 +449,16 @@ function collectCurrentEntry() {
   };
 }
 
+function saveCurrentSession() {
+  const entry = collectCurrentEntry();
+  const existing = getSavedSessions();
+
+  existing.unshift(entry);
+
+  const trimmed = existing.slice(0, 20);
+  setSavedSessions(trimmed);
+  renderHistory();
+}
 function loadSession(id) {
   const items = getSavedSessions();
   const session = items.find(item => String(item.id) === String(id));
