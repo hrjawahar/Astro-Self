@@ -179,7 +179,7 @@ const I18N = {
     verdictMarriage: "Marriage & Relationship",
     verdictCareer: "Career & Earning",
     verdictEMA: "EMA Risk",
-    verdictHealth: "Health"
+    verdictHealth: "Health",
     strengthStrong: "Strong",
   strengthMixed: "Mixed",
   strengthWeak: "Weak",
