@@ -2,63 +2,117 @@ const SIGNS = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio
 const PLANETS = ["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn","Rahu","Ketu"];
 const REFERENCE_SECTIONS = [
   {
-    title: "Core principles",
-    lines: [
-      "D1 shows external life events and promise.",
-      "D9 shows maturity, durability, and later-life consolidation.",
-      "Strong D1 + Strong D9 = Stable result.",
-      "Strong D1 + Weak D9 = Temporary or unstable result.",
-      "Weak D1 + Strong D9 = Delayed or late-blooming result.",
-      "Weak D1 + Weak D9 = Chronic challenge or vulnerability."
-    ]
+    titleKey: "refCorePrinciples",
+    lines: {
+      en: [
+        "D1 shows external life events and promise.",
+        "D9 shows maturity, durability, and later-life consolidation.",
+        "Strong D1 + Strong D9 = Stable result.",
+        "Strong D1 + Weak D9 = Temporary or unstable result.",
+        "Weak D1 + Strong D9 = Delayed or late-blooming result.",
+        "Weak D1 + Weak D9 = Chronic challenge or vulnerability."
+      ],
+      ta: [
+        "D1 வெளிப்புற வாழ்க்கை நிகழ்வுகள் மற்றும் அடிப்படை வாக்குறுதியைக் காட்டுகிறது.",
+        "D9 முதிர்ச்சி, நீடிப்பு, மற்றும் பிற்கால வாழ்க்கை நிலைத்தன்மையைக் காட்டுகிறது.",
+        "வலுவான D1 + வலுவான D9 = நிலையான பலன்.",
+        "வலுவான D1 + பலவீனமான D9 = தற்காலிக அல்லது நிலைகுலையும் பலன்.",
+        "பலவீனமான D1 + வலுவான D9 = தாமதமான அல்லது பின்னர் மலரும் பலன்.",
+        "பலவீனமான D1 + பலவீனமான D9 = நீடித்த சவால் அல்லது பலவீனம்."
+      ]
+    }
   },
   {
-    title: "Foundational checks",
-    lines: [
-      "Always start with Lagna and Lagna lord in D1 and D9.",
-      "Check Moon before domain judgments because emotional resilience modifies outcomes.",
-      "House lord carries more weight than occupant.",
-      "D9 has final say on sustainability in marriage, long-term identity, and durability of outcomes."
-    ]
+    titleKey: "refFoundationalChecks",
+    lines: {
+      en: [
+        "Always start with Lagna and Lagna lord in D1 and D9.",
+        "Check Moon before domain judgments because emotional resilience modifies outcomes.",
+        "House lord carries more weight than occupant.",
+        "D9 has final say on sustainability in marriage, long-term identity, and durability of outcomes."
+      ],
+      ta: [
+        "எப்போதும் D1 மற்றும் D9 இல் லக்னம் மற்றும் லக்னாதிபதியிலிருந்து தொடங்கவும்.",
+        "துறை முடிவுகளுக்கு முன் சந்திரனைப் பார்க்கவும்; உணர்ச்சி நிலைத்தன்மை முடிவுகளை மாற்றும்.",
+        "பாவ அதிபதிக்கு, அந்த பாவத்தில் அமர்ந்திருப்பதைக் காட்டிலும் அதிக முக்கியத்துவம் உண்டு.",
+        "திருமணம், நீண்டகால அடையாளம், மற்றும் பலன்களின் நீடிப்பில் D9 இறுதி தீர்மானத்தைக் கொடுக்கும்."
+      ]
+    }
   },
   {
-    title: "House quick reference",
-    lines: [
-      "1 self and identity",
-      "2 wealth and family",
-      "5 romance, intelligence, children",
-      "6 disease, service, conflict",
-      "7 marriage and partnerships",
-      "8 secrets, transformation, longevity of bond",
-      "10 career and reputation",
-      "11 gains and networks",
-      "12 loss, bed life, withdrawal"
-    ]
+    titleKey: "refHouseQuickReference",
+    lines: {
+      en: [
+        "1 self and identity",
+        "2 wealth and family",
+        "5 romance, intelligence, children",
+        "6 disease, service, conflict",
+        "7 marriage and partnerships",
+        "8 secrets, transformation, longevity of bond",
+        "10 career and reputation",
+        "11 gains and networks",
+        "12 loss, bed life, withdrawal"
+      ],
+      ta: [
+        "1 சுயம் மற்றும் அடையாளம்",
+        "2 செல்வம் மற்றும் குடும்பம்",
+        "5 காதல், புத்திசாலித்தனம், பிள்ளைகள்",
+        "6 நோய், சேவை, மோதல்",
+        "7 திருமணம் மற்றும் கூட்டாண்மை",
+        "8 ரகசியம், மாற்றம், உறவு நீடிப்பு",
+        "10 தொழில் மற்றும் புகழ்",
+        "11 லாபம் மற்றும் வலையமைப்பு",
+        "12 இழப்பு, படுக்கை வாழ்க்கை, விலகல்"
+      ]
+    }
   },
   {
-    title: "Planet karakas",
-    lines: [
-      "Sun = identity, authority, recognition",
-      "Moon = emotions, mind, habits",
-      "Mars = drive, conflict, courage",
-      "Mercury = analysis, speech, trade",
-      "Jupiter = wisdom, prosperity, expansion",
-      "Venus = love, harmony, pleasure",
-      "Saturn = delay, karma, responsibility",
-      "Rahu = obsession, experimentation, material hunger",
-      "Ketu = detachment, withdrawal, insight"
-    ]
+    titleKey: "refPlanetKarakas",
+    lines: {
+      en: [
+        "Sun = identity, authority, recognition",
+        "Moon = emotions, mind, habits",
+        "Mars = drive, conflict, courage",
+        "Mercury = analysis, speech, trade",
+        "Jupiter = wisdom, prosperity, expansion",
+        "Venus = love, harmony, pleasure",
+        "Saturn = delay, karma, responsibility",
+        "Rahu = obsession, experimentation, material hunger",
+        "Ketu = detachment, withdrawal, insight"
+      ],
+      ta: [
+        "சூரியன் = அடையாளம், அதிகாரம், அங்கீகாரம்",
+        "சந்திரன் = உணர்வுகள், மனம், பழக்கங்கள்",
+        "செவ்வாய் = இயக்கம், மோதல், தைரியம்",
+        "புதன் = பகுப்பாய்வு, பேச்சு, வாணிபம்",
+        "குரு = ஞானம், வளம், விரிவு",
+        "சுக்கிரன் = அன்பு, ஒற்றுமை, இன்பம்",
+        "சனி = தாமதம், கர்மா, பொறுப்பு",
+        "ராகு = பற்றுதல், சோதனை, பொருள் ஆசை",
+        "கேது = விலகல், பின்வாங்கல், உள்ளுணர்வு"
+      ]
+    }
   },
   {
-    title: "Interpretation workflow",
-    lines: [
-      "1. Validate D1 and D9 input.",
-      "2. Read Lagna and Moon.",
-      "3. Read domain house lord, occupants, and aspects.",
-      "4. Compare D1 promise with D9 sustainability.",
-      "5. Apply conflict-resolution logic.",
-      "6. Generate verdict and show triggered rules."
-    ]
+    titleKey: "refInterpretationWorkflow",
+    lines: {
+      en: [
+        "1. Validate D1 and D9 input.",
+        "2. Read Lagna and Moon.",
+        "3. Read domain house lord, occupants, and aspects.",
+        "4. Compare D1 promise with D9 sustainability.",
+        "5. Apply conflict-resolution logic.",
+        "6. Generate verdict and show triggered rules."
+      ],
+      ta: [
+        "1. D1 மற்றும் D9 உள்ளீட்டைச் சரிபார்க்கவும்.",
+        "2. லக்னம் மற்றும் சந்திரனைப் படிக்கவும்.",
+        "3. துறை சார்ந்த பாவ அதிபதி, அமர்ந்த கிரகங்கள், பார்வைகளைப் படிக்கவும்.",
+        "4. D1 வாக்குறுதியை D9 நீடிப்புடன் ஒப்பிடவும்.",
+        "5. முரண்பாடு தீர்வு விதிகளைப் பயன்படுத்தவும்.",
+        "6. முடிவை உருவாக்கி, தூண்டப்பட்ட விதிகளை காட்டவும்."
+      ]
+    }
   }
 ];
 
@@ -91,8 +145,50 @@ const I18N = {
     comparisonTitle: "D1–D9 Comparison",
     domainInsights: "Domain Insights",
     whyThisConclusion: "Why this conclusion",
-    referenceGuide: "Reference Guide"
+    referenceGuide: "Reference Guide",
+
+    summaryOverallPattern: "Overall pattern",
+    summaryEarlyLife: "Early-life leaning",
+    summaryLaterLife: "Later-life leaning",
+    summaryGenerated: "Generated",
+
+    confidenceHigh: "High confidence",
+    confidenceModerate: "Moderate confidence",
+    confidenceGuarded: "Guarded confidence",
+    confidenceBasis: "Based on domain alignment, conflicting signals, and global modifiers.",
+
+    comparisonDomain: "Domain",
+    comparisonD1: "D1",
+    comparisonD9: "D9",
+    comparisonTrend: "Trend",
+    comparisonFinalVerdict: "Final Verdict",
+
+    quickRunPrompt: "Run analysis to view quick verdict.",
+    summaryPrompt: "Run analysis to view summary.",
+    confidencePrompt: "Confidence score will appear here.",
+    comparisonPrompt: "Comparison table will appear here.",
+    whyPrompt: "Triggered rules will appear here.",
+
+    trendStable: "Stable",
+    trendEarlyStrengthLaterFluctuation: "Early strength, later fluctuation",
+    trendImprovesLater: "Improves later",
+    trendPersistentChallenge: "Persistent challenge",
+    trendMixedProgression: "Mixed progression",
+
+    refCorePrinciples: "Core principles",
+    refFoundationalChecks: "Foundational checks",
+    refHouseQuickReference: "House quick reference",
+    refPlanetKarakas: "Planet karakas",
+    refInterpretationWorkflow: "Interpretation workflow",
+
+    verdictIdentity: "Identity & Personality",
+    verdictWealth: "Wealth & Family",
+    verdictMarriage: "Marriage & Relationship",
+    verdictCareer: "Career & Earning",
+    verdictEMA: "EMA Risk",
+    verdictHealth: "Health"
   },
+
   ta: {
     eyebrow: "கையேடு அடிப்படையிலான D1/D9 கைமுறை விளக்க பயன்பாடு",
     appTitle: "D1–D9 வாழ்க்கை வடிவியல் பகுப்பாய்வி",
@@ -116,7 +212,48 @@ const I18N = {
     comparisonTitle: "D1–D9 ஒப்பீடு",
     domainInsights: "வாழ்க்கை துறை பார்வைகள்",
     whyThisConclusion: "இந்த முடிவிற்கான காரணம்",
-    referenceGuide: "குறிப்புக் கையேடு"
+    referenceGuide: "குறிப்புக் கையேடு",
+
+    summaryOverallPattern: "மொத்த வடிவம்",
+    summaryEarlyLife: "ஆரம்ப வாழ்க்கை போக்கு",
+    summaryLaterLife: "பிற்கால வாழ்க்கை போக்கு",
+    summaryGenerated: "உருவாக்கப்பட்ட நேரம்",
+
+    confidenceHigh: "உயர் நம்பகத்தன்மை",
+    confidenceModerate: "மிதமான நம்பகத்தன்மை",
+    confidenceGuarded: "எச்சரிக்கையுடன் பயன்படுத்தவும்",
+    confidenceBasis: "துறை ஒத்திசைவு, முரண்பட்ட சைகைகள், மற்றும் global modifiers அடிப்படையில்.",
+
+    comparisonDomain: "துறை",
+    comparisonD1: "D1",
+    comparisonD9: "D9",
+    comparisonTrend: "போக்கு",
+    comparisonFinalVerdict: "இறுதி முடிவு",
+
+    quickRunPrompt: "விரைவு முடிவைப் பார்க்க பகுப்பாய்வு இயக்கவும்.",
+    summaryPrompt: "சுருக்கத்தைப் பார்க்க பகுப்பாய்வு இயக்கவும்.",
+    confidencePrompt: "நம்பகத்தன்மை மதிப்பெண் இங்கே தோன்றும்.",
+    comparisonPrompt: "ஒப்பீட்டு அட்டவணை இங்கே தோன்றும்.",
+    whyPrompt: "தூண்டப்பட்ட விதிகள் இங்கே தோன்றும்.",
+
+    trendStable: "நிலையானது",
+    trendEarlyStrengthLaterFluctuation: "ஆரம்ப வலிமை, பின்னர் மாற்றம்",
+    trendImprovesLater: "பிற்காலத்தில் மேம்படும்",
+    trendPersistentChallenge: "தொடர்ச்சியான சவால்",
+    trendMixedProgression: "கலப்பு முன்னேற்றம்",
+
+    refCorePrinciples: "முக்கிய கொள்கைகள்",
+    refFoundationalChecks: "அடிப்படை சரிபார்ப்புகள்",
+    refHouseQuickReference: "பாவ விரைவு குறிப்பு",
+    refPlanetKarakas: "கிரக காரகங்கள்",
+    refInterpretationWorkflow: "விளக்க வேலைச்சுற்று",
+
+    verdictIdentity: "அடையாளம் & தன்மை",
+    verdictWealth: "செல்வம் & குடும்பம்",
+    verdictMarriage: "திருமணம் & உறவு",
+    verdictCareer: "தொழில் & வருமானம்",
+    verdictEMA: "EMA அபாயம்",
+    verdictHealth: "ஆரோக்கியம்"
   }
 };
 const tabs = document.querySelectorAll('.tab');
@@ -160,10 +297,16 @@ function createGrid(containerId, prefix) {
 function initReferenceGuide() {
   const wrap = document.getElementById('referenceGuide');
   const template = document.getElementById('accordionTemplate');
+  const lang = getCurrentLang();
+
+  wrap.innerHTML = '';
+
   REFERENCE_SECTIONS.forEach(section => {
     const node = template.content.cloneNode(true);
-    node.querySelector('summary').textContent = section.title;
-    node.querySelector('.accordion-content').innerHTML = `<ul>${section.lines.map(line => `<li>${line}</li>`).join('')}</ul>`;
+    node.querySelector('summary').textContent = t(section.titleKey);
+    node.querySelector('.accordion-content').innerHTML = `<ul>${
+      section.lines[lang].map(line => `<li>${line}</li>`).join('')
+    }</ul>`;
     wrap.appendChild(node);
   });
 }
@@ -229,9 +372,33 @@ function initLanguage() {
   if (languageToggle) languageToggle.value = savedLang;
   applyLanguage(savedLang);
 
-  languageToggle?.addEventListener('change', (e) => {
-    applyLanguage(e.target.value);
-  });
+ languageToggle?.addEventListener('change', (e) => {
+  applyLanguage(e.target.value);
+  initReferenceGuide();
+
+  if (window.__lastReport) {
+    renderResult(window.__lastReport);
+  }
+});
+function getCurrentLang() {
+  return localStorage.getItem('astroAppLang') || 'en';
+}
+
+function t(key) {
+  const lang = getCurrentLang();
+  return I18N[lang]?.[key] || I18N.en[key] || key;
+}
+
+function translateDomainTitle(title) {
+  const map = {
+    "Identity & Personality": t('verdictIdentity'),
+    "Wealth & Family": t('verdictWealth'),
+    "Marriage & Relationship": t('verdictMarriage'),
+    "Career & Earning": t('verdictCareer'),
+    "EMA Risk": t('verdictEMA'),
+    "Health": t('verdictHealth')
+  };
+  return map[title] || title;
 }
 function buildPayload() {
   const d1Lagna = document.getElementById('d1Lagna').value;
@@ -289,10 +456,10 @@ function renderResult(data) {
   const visibleDomains = domains.filter(domain => showEMA || domain.title !== "EMA Risk");
 
   summaryBox.innerHTML = `
-    <p><strong>Overall pattern:</strong> ${summary.overallPattern}</p>
-    <p><strong>Early-life leaning:</strong> ${summary.earlyLife}</p>
-    <p><strong>Later-life leaning:</strong> ${summary.laterLife}</p>
-    <p><strong>Generated:</strong> ${new Date(generatedAt).toLocaleString()}</p>
+    <p><strong>${t('summaryOverallPattern')}:</strong> ${summary.overallPattern}</p>
+    <p><strong>${t('summaryEarlyLife')}:</strong> ${summary.earlyLife}</p>
+    <p><strong>${t('summaryLaterLife')}:</strong> ${summary.laterLife}</p>
+    <p><strong>${t('summaryGenerated')}:</strong> ${new Date(generatedAt).toLocaleString()}</p>
   `;
 
   renderQuickVerdict(visibleDomains);
@@ -328,7 +495,7 @@ function renderResult(data) {
 function renderQuickVerdict(domains) {
   quickVerdictGrid.innerHTML = domains.map(domain => `
     <div class="verdict-card">
-      <h3>${domain.title}</h3>
+      <h3>${translateDomainTitle(domain.title)}</h3>
       <div class="verdict-value">${domain.verdict}</div>
     </div>
   `).join('');
@@ -344,15 +511,14 @@ function renderConfidence(domains, triggeredRules) {
   if (score > 95) score = 95;
   if (score < 40) score = 40;
 
-  let label = 'Moderate confidence';
-  if (score >= 85) label = 'High confidence';
-  else if (score <= 55) label = 'Guarded confidence';
-
+ let label = t('confidenceModerate');
+if (score >= 85) label = t('confidenceHigh');
+else if (score <= 55) label = t('confidenceGuarded');
   confidenceBox.innerHTML = `
     <div class="confidence-box">
       <div class="confidence-score">${score}%</div>
       <div class="confidence-label">${label}</div>
-      <div class="score-row">Based on domain alignment, conflicting signals, and global modifiers.</div>
+    <div class="score-row">${t('confidenceBasis')}</div>
     </div>
   `;
 }
@@ -363,17 +529,17 @@ function renderComparisonTable(domains) {
     <table class="comparison-table">
       <thead>
         <tr>
-          <th>Domain</th>
-          <th>D1</th>
-          <th>D9</th>
-          <th>Trend</th>
-          <th>Final Verdict</th>
+          <th>${t('comparisonDomain')}</th>
+          <th>${t('comparisonD1')}</th>
+          <th>${t('comparisonD9')}</th>
+          <th>${t('comparisonTrend')}</th>
+          <th>${t('comparisonFinalVerdict')}</th>
         </tr>
       </thead>
       <tbody>
         ${domains.map(domain => `
           <tr>
-            <td>${domain.title}</td>
+            <td>${translateDomainTitle(domain.title)}</td>
             <td>${domain.d1Strength}</td>
             <td>${domain.d9Strength}</td>
             <td>${deriveTrend(domain)}</td>
@@ -385,11 +551,11 @@ function renderComparisonTable(domains) {
   `;
 }
 function deriveTrend(domain) {
-  if (domain.d1Strength === 'Strong' && domain.d9Strength === 'Strong') return 'Stable';
-  if (domain.d1Strength === 'Strong' && (domain.d9Strength === 'Mixed' || domain.d9Strength === 'Weak')) return 'Early strength, later fluctuation';
-  if ((domain.d1Strength === 'Mixed' || domain.d1Strength === 'Weak') && domain.d9Strength === 'Strong') return 'Improves later';
-  if (domain.d1Strength === 'Weak' && domain.d9Strength === 'Weak') return 'Persistent challenge';
-  return 'Mixed progression';
+  if (domain.d1Strength === 'Strong' && domain.d9Strength === 'Strong') return t('trendStable');
+  if (domain.d1Strength === 'Strong' && (domain.d9Strength === 'Mixed' || domain.d9Strength === 'Weak')) return t('trendEarlyStrengthLaterFluctuation');
+  if ((domain.d1Strength === 'Mixed' || domain.d1Strength === 'Weak') && domain.d9Strength === 'Strong') return t('trendImprovesLater');
+  if (domain.d1Strength === 'Weak' && domain.d9Strength === 'Weak') return t('trendPersistentChallenge');
+  return t('trendMixedProgression');
 }
 function statusClass(verdict) {
   const key = verdict.toLowerCase();
