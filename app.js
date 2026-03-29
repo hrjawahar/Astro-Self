@@ -516,8 +516,7 @@ function renderHistory() {
     btn.addEventListener('click', () => deleteSession(btn.dataset.deleteId));
   });
 }
-  return map[title] || title;
-}
+ 
 function buildPayload() {
   const d1Lagna = document.getElementById('d1Lagna').value;
   const d9Lagna = document.getElementById('d9Lagna').value;
