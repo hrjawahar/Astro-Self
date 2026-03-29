@@ -187,7 +187,8 @@ const I18N = {
     verdictCareer: "Career & Earning",
     verdictEMA: "EMA Risk",
     verdictHealth: "Health"
- };
+ }
+};
 
   ta: {
     eyebrow: "கையேடு அடிப்படையிலான D1/D9 கைமுறை விளக்க பயன்பாடு",
