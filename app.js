@@ -254,7 +254,7 @@ reportDomains: "DOMAIN INSIGHTS"
     verdictMarriage: "திருமணம் & உறவு",
     verdictCareer: "தொழில் & வருமானம்",
     verdictEMA: "EMA அபாயம்",
-    verdictHealth: "ஆரோக்கியம்"
+    verdictHealth: "ஆரோக்கியம்",
     strengthStrong: "வலுவான",
 strengthMixed: "கலப்பு",
 strengthWeak: "பலவீனமான",
