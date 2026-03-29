@@ -122,7 +122,10 @@ const signLord = {
   Sagittarius: "Jupiter", Capricorn: "Saturn", Aquarius: "Saturn", Pisces: "Jupiter"
 };
 const I18N = {
- en: { ... },
+  en: {
+    ...
+  },
+  ta: {
     eyebrow: "Rule-based browser app for manual D1/D9 interpretation",
     appTitle: "D1–D9 Life Pattern Analyzer",
     languageLabel: "Language",
@@ -146,50 +149,99 @@ const I18N = {
     domainInsights: "Domain Insights",
     whyThisConclusion: "Why this conclusion",
     referenceGuide: "Reference Guide",
-
     summaryOverallPattern: "Overall pattern",
     summaryEarlyLife: "Early-life leaning",
     summaryLaterLife: "Later-life leaning",
     summaryGenerated: "Generated",
-
     confidenceHigh: "High confidence",
     confidenceModerate: "Moderate confidence",
     confidenceGuarded: "Guarded confidence",
     confidenceBasis: "Based on domain alignment, conflicting signals, and global modifiers.",
-
     comparisonDomain: "Domain",
     comparisonD1: "D1",
     comparisonD9: "D9",
     comparisonTrend: "Trend",
     comparisonFinalVerdict: "Final Verdict",
-
     quickRunPrompt: "Run analysis to view quick verdict.",
     summaryPrompt: "Run analysis to view summary.",
     confidencePrompt: "Confidence score will appear here.",
     comparisonPrompt: "Comparison table will appear here.",
     whyPrompt: "Triggered rules will appear here.",
-
     trendStable: "Stable",
     trendEarlyStrengthLaterFluctuation: "Early strength, later fluctuation",
     trendImprovesLater: "Improves later",
     trendPersistentChallenge: "Persistent challenge",
     trendMixedProgression: "Mixed progression",
-
     refCorePrinciples: "Core principles",
     refFoundationalChecks: "Foundational checks",
     refHouseQuickReference: "House quick reference",
     refPlanetKarakas: "Planet karakas",
     refInterpretationWorkflow: "Interpretation workflow",
-
     verdictIdentity: "Identity & Personality",
     verdictWealth: "Wealth & Family",
     verdictMarriage: "Marriage & Relationship",
     verdictCareer: "Career & Earning",
     verdictEMA: "EMA Risk",
     verdictHealth: "Health"
- },
-
- ta: { ... }
+     eyebrow: "கையேடு அடிப்படையிலான D1/D9 கைமுறை விளக்க பயன்பாடு",
+    appTitle: "D1–D9 வாழ்க்கை வடிவியல் பகுப்பாய்வி",
+    languageLabel: "மொழி",
+    downloadReportBtn: "அறிக்கையை பதிவிறக்கு",
+    resetBtn: "மீட்டமை",
+    tabInput: "உள்ளீடு",
+    tabInsights: "பார்வைகள்",
+    tabReference: "குறிப்புக் கையேடு",
+    howItWorks: "இந்த பதிப்பு எப்படி செயல்படுகிறது",
+    d1ManualEntry: "D1 கைமுறை பதிவு",
+    d9ManualEntry: "D9 கைமுறை பதிவு",
+    lagnaSign: "லக்ன ராசி",
+    validation: "சரிபார்ப்பு",
+    generateInsights: "பார்வைகளை உருவாக்கு",
+    nativeName: "பெயர்",
+    emaSensitive: "EMA (உணர்வுசார்)",
+    quickVerdict: "விரைவு முடிவு",
+    summary: "சுருக்கம்",
+    confidenceScore: "நம்பகத்தன்மை மதிப்பெண்",
+    comparisonTitle: "D1–D9 ஒப்பீடு",
+    domainInsights: "வாழ்க்கை துறை பார்வைகள்",
+    whyThisConclusion: "இந்த முடிவிற்கான காரணம்",
+    referenceGuide: "குறிப்புக் கையேடு",
+    summaryOverallPattern: "மொத்த வடிவம்",
+    summaryEarlyLife: "ஆரம்ப வாழ்க்கை போக்கு",
+    summaryLaterLife: "பிற்கால வாழ்க்கை போக்கு",
+    summaryGenerated: "உருவாக்கப்பட்ட நேரம்",
+    confidenceHigh: "உயர் நம்பகத்தன்மை",
+    confidenceModerate: "மிதமான நம்பகத்தன்மை",
+    confidenceGuarded: "எச்சரிக்கையுடன் பயன்படுத்தவும்",
+    confidenceBasis: "துறை ஒத்திசைவு, முரண்பட்ட சைகைகள், மற்றும் global modifiers அடிப்படையில்.",
+    comparisonDomain: "துறை",
+    comparisonD1: "D1",
+    comparisonD9: "D9",
+    comparisonTrend: "போக்கு",
+    comparisonFinalVerdict: "இறுதி முடிவு",
+    quickRunPrompt: "விரைவு முடிவைப் பார்க்க பகுப்பாய்வு இயக்கவும்.",
+    summaryPrompt: "சுருக்கத்தைப் பார்க்க பகுப்பாய்வு இயக்கவும்.",
+    confidencePrompt: "நம்பகத்தன்மை மதிப்பெண் இங்கே தோன்றும்.",
+    comparisonPrompt: "ஒப்பீட்டு அட்டவணை இங்கே தோன்றும்.",
+    whyPrompt: "தூண்டப்பட்ட விதிகள் இங்கே தோன்றும்.",
+    trendStable: "நிலையானது",
+    trendEarlyStrengthLaterFluctuation: "ஆரம்ப வலிமை, பின்னர் மாற்றம்",
+    trendImprovesLater: "பிற்காலத்தில் மேம்படும்",
+    trendPersistentChallenge: "தொடர்ச்சியான சவால்",
+    trendMixedProgression: "கலப்பு முன்னேற்றம்",
+    refCorePrinciples: "முக்கிய கொள்கைகள்",
+    refFoundationalChecks: "அடிப்படை சரிபார்ப்புகள்",
+    refHouseQuickReference: "பாவ விரைவு குறிப்பு",
+    refPlanetKarakas: "கிரக காரகங்கள்",
+    refInterpretationWorkflow: "விளக்க வேலைச்சுற்று",
+    verdictIdentity: "அடையாளம் & தன்மை",
+    verdictWealth: "செல்வம் & குடும்பம்",
+    verdictMarriage: "திருமணம் & உறவு",
+    verdictCareer: "தொழில் & வருமானம்",
+    verdictEMA: "EMA அபாயம்",
+    verdictHealth: "ஆரோக்கியம்"
+  }
+};
 
 };
     eyebrow: "கையேடு அடிப்படையிலான D1/D9 கைமுறை விளக்க பயன்பாடு",
@@ -374,14 +426,15 @@ function initLanguage() {
   if (languageToggle) languageToggle.value = savedLang;
   applyLanguage(savedLang);
 
- languageToggle?.addEventListener('change', (e) => {
-  applyLanguage(e.target.value);
-  initReferenceGuide();
+  languageToggle?.addEventListener('change', (e) => {
+    applyLanguage(e.target.value);
+    initReferenceGuide();
 
-  if (window.__lastReport) {
-    renderResult(window.__lastReport);
-  }
-});
+    if (window.__lastReport) {
+      renderResult(window.__lastReport);
+    }
+  });
+}
 function getCurrentLang() {
   return localStorage.getItem('astroAppLang') || 'en';
 }
