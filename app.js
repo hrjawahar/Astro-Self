@@ -417,6 +417,16 @@ function translateDomainTitle(title) {
     "EMA Risk": t('verdictEMA'),
     "Health": t('verdictHealth')
   };
+  function saveCurrentSession() {
+  const entry = collectCurrentEntry();
+  const existing = getSavedSessions();
+
+  existing.unshift(entry);
+
+  const trimmed = existing.slice(0, 20);
+  setSavedSessions(trimmed);
+  renderHistory();
+}
   const STORAGE_KEY = 'astroAppSavedSessions';
 
 function getSavedSessions() {
@@ -442,17 +452,6 @@ function collectCurrentEntry() {
     showEMA: document.getElementById('showEmaToggle')?.checked || false,
     savedAt: new Date().toISOString()
   };
-}
-
-function saveCurrentSession() {
-  const entry = collectCurrentEntry();
-  const existing = getSavedSessions();
-
-  existing.unshift(entry);
-
-  const trimmed = existing.slice(0, 20);
-  setSavedSessions(trimmed);
-  renderHistory();
 }
 
 function loadSession(id) {
