@@ -285,6 +285,8 @@ const analyzeBtn = document.getElementById('analyzeBtn');
 const downloadBtn = document.getElementById('downloadReportBtn');
 const resetBtn = document.getElementById('resetBtn');
 const languageToggle = document.getElementById('languageToggle');
+const saveSessionBtn = document.getElementById('saveSessionBtn');
+const historyBox = document.getElementById('historyBox');
 function initSelect(id) {
   const select = document.getElementById(id);
   SIGNS.forEach(sign => {
@@ -415,6 +417,101 @@ function translateDomainTitle(title) {
     "EMA Risk": t('verdictEMA'),
     "Health": t('verdictHealth')
   };
+  const STORAGE_KEY = 'astroAppSavedSessions';
+
+function getSavedSessions() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  } catch {
+    return [];
+  }
+}
+
+function setSavedSessions(items) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
+
+function collectCurrentEntry() {
+  return {
+    id: Date.now(),
+    name: document.getElementById('nativeName')?.value?.trim() || 'Unnamed Native',
+    d1Lagna: document.getElementById('d1Lagna').value,
+    d9Lagna: document.getElementById('d9Lagna').value,
+    d1Houses: getHouseInput('d1'),
+    d9Houses: getHouseInput('d9'),
+    showEMA: document.getElementById('showEmaToggle')?.checked || false,
+    savedAt: new Date().toISOString()
+  };
+}
+
+function saveCurrentSession() {
+  const entry = collectCurrentEntry();
+  const existing = getSavedSessions();
+
+  existing.unshift(entry);
+
+  const trimmed = existing.slice(0, 20);
+  setSavedSessions(trimmed);
+  renderHistory();
+}
+
+function loadSession(id) {
+  const items = getSavedSessions();
+  const session = items.find(item => String(item.id) === String(id));
+  if (!session) return;
+
+  document.getElementById('nativeName').value = session.name || '';
+  document.getElementById('d1Lagna').value = session.d1Lagna || 'Aries';
+  document.getElementById('d9Lagna').value = session.d9Lagna || 'Aries';
+  document.getElementById('showEmaToggle').checked = !!session.showEMA;
+
+  for (let house = 1; house <= 12; house += 1) {
+    document.getElementById(`d1-house-${house}`).value = (session.d1Houses?.[house] || []).join(', ');
+    document.getElementById(`d9-house-${house}`).value = (session.d9Houses?.[house] || []).join(', ');
+  }
+
+  switchTab('inputTab');
+  renderValidation([]);
+}
+
+function deleteSession(id) {
+  const items = getSavedSessions().filter(item => String(item.id) !== String(id));
+  setSavedSessions(items);
+  renderHistory();
+}
+
+function renderHistory() {
+  const items = getSavedSessions();
+
+  if (!items.length) {
+    historyBox.className = 'empty-state';
+    historyBox.innerHTML = 'No saved sessions yet.';
+    return;
+  }
+
+  historyBox.className = 'history-list';
+  historyBox.innerHTML = items.map(item => `
+    <div class="history-item">
+      <div class="history-meta">
+        <div class="history-name">${item.name}</div>
+        <div class="history-time">${new Date(item.savedAt).toLocaleString()}</div>
+        <div class="history-time">D1: ${item.d1Lagna} | D9: ${item.d9Lagna}</div>
+      </div>
+      <div class="history-actions">
+        <button class="secondary" data-load-id="${item.id}">Load</button>
+        <button class="ghost" data-delete-id="${item.id}">Delete</button>
+      </div>
+    </div>
+  `).join('');
+
+  historyBox.querySelectorAll('[data-load-id]').forEach(btn => {
+    btn.addEventListener('click', () => loadSession(btn.dataset.loadId));
+  });
+
+  historyBox.querySelectorAll('[data-delete-id]').forEach(btn => {
+    btn.addEventListener('click', () => deleteSession(btn.dataset.deleteId));
+  });
+}
   return map[title] || title;
 }
 function buildPayload() {
@@ -603,6 +700,7 @@ function switchTab(tabId) {
 
 tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
 analyzeBtn.addEventListener('click', analyze);
+saveSessionBtn?.addEventListener('click', saveCurrentSession);
 resetBtn.addEventListener('click', () => window.location.reload());
 downloadBtn.addEventListener('click', () => {
   if (!window.__lastReport) return;
@@ -657,3 +755,4 @@ createGrid('d9Grid', 'd9');
 
 initReferenceGuide();
 initLanguage();
+renderHistory();
